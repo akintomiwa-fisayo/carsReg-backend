@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const db = require('./dbconn');
 
 // Import routes
-
+const filtersRouter = require('./routes/filters');
 
 // Initialize app
 const app = express();
@@ -39,7 +39,7 @@ app.use((req, res, next) => {
 });
 
 // Route requests to specific URI
-
+app.use('/api/filters', filtersRouter);
 
 // Handle error
 app.use((req, res, next) => {
@@ -52,6 +52,7 @@ app.use((req, res, next) => {
 // eslint-disable-next-line no-unused-vars
 app.use((error, req, res, next) => {
   const status = error.status || 500;
+  console.log(error);
   res.status(status).json({
     status: 'error',
     error: status !== 500 ? error.message : "Sorry, we couldn't complete your request please try again",
