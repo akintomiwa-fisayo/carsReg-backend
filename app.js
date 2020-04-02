@@ -6,6 +6,7 @@ const db = require('./dbconn');
 
 // Import routes
 const filtersRouter = require('./routes/filters');
+const carOwnersRouter = require('./routes/carOwners');
 
 // Initialize app
 const app = express();
@@ -40,6 +41,7 @@ app.use((req, res, next) => {
 
 // Route requests to specific URI
 app.use('/api/filters', filtersRouter);
+app.use('/api/car-owners', carOwnersRouter);
 
 // Handle error
 app.use((req, res, next) => {
